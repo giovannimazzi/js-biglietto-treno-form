@@ -1,6 +1,9 @@
 // prezzo unitario biglietto [€/km]
 const unitPrice = 0.21;
 
+// età di default
+const defaultAge = "Maggiorenne";
+
 // distanza minima [km]
 const minDistance = 1;
 
@@ -9,6 +12,14 @@ const inputName = document.getElementById("input-name");
 const inputDistance = document.getElementById("input-distance");
 const inputAge = document.getElementById("input-age");
 const btnConfirm = document.getElementById("btn-confirm");
+const btnAbort = document.getElementById("btn-abort");
+
+btnAbort.addEventListener("click", () => {
+  // Ripristina i valori di default definiti nell'HTML
+  inputName.value = inputName.defaultValue;
+  inputDistance.value = inputDistance.defaultValue;
+  inputAge.value = defaultAge;
+});
 
 btnConfirm.addEventListener("click", () => {
   const name = capitalize(inputName.value);
