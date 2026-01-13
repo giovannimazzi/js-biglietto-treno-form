@@ -61,6 +61,12 @@ inputForm.addEventListener("submit", (e) => {
   console.log(`Prezzo biglietto: € ${price.toFixed(2)}`);
 });
 
+/**
+ * This function receives a string as a name and returns the capitalized version:
+ * first char of each word in uppercase and the rest in lowercase.
+ * @param {string} name The string to capitalize
+ * @returns {string} The capitalized string
+ */
 const capitalize = (name) => {
   if (!name) return "";
   if (name.includes(" ")) {
