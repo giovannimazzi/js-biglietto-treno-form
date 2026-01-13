@@ -36,52 +36,84 @@
     <script src="./main.js" defer></script>
   </head>
   <body>
-    <div class="container">
+    <div class="container text-center">
       <h1 class="h2">CALCOLA IL PREZZO DEL TUO BIGLIETTO</h1>
-      <form action="" id="input-form">
-        <input type="text" id="input-name" />
-        <input type="number" id="input-distance" min="1" step="1" value="1" />
-        <select name="age" id="input-age">
-          <option value="Minorenne">Minorenne</option>
-          <option value="Maggiorenne" selected>Maggiorenne</option>
-          <option value="Over 65">Over 65</option>
-        </select>
-        <button id="btn-confirm">CONFERMA</button>
+      <form action="#" id="input-form">
+        <div class="row g-3 align-items-center py-3">
+          <div class="col-12 col-sm-4">
+            <div class="card">
+              <label for="input-name">NOME COGNOME</label>
+              <input class="text-center" type="text" id="input-name" required />
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-4">
+            <div class="card">
+              <label for="input-distance">TRATTA [km]</label>
+              <input
+                class="text-center"
+                type="number"
+                id="input-distance"
+                min="5"
+                step="5"
+                value="5"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="card">
+              <label for="input-age">CLASSE</label>
+              <select class="text-center" name="age" id="input-age">
+                <option value="Minorenne">Minorenne</option>
+                <option value="Maggiorenne" selected>Maggiorenne</option>
+                <option value="Over 65">Over 65</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12"><button id="btn-confirm">CONFERMA</button></div>
+        </div>
       </form>
       <button id="btn-abort">ANNULLA</button>
 
-      <section>
+      <section id="output-section" class="d-none py-5" style="max-width: 512px">
         <h2>IL TUO BIGLIETTO</h2>
         <div class="card">
           <div class="card-header fw-bold text-center">
             <big>PASSEGGERO</big> <br />
-            placeholderName
+            <span id="output-name"></span>
           </div>
           <div class="card-body">
             <div class="container w-75">
-              <div class="row row-cols-1">
+              <div class="row row-cols-1 g-4">
                 <div
                   class="col d-flex justify-content-between align-items-center"
                 >
-                  <span class="fw-bold">CLASSE</span><span>placeholderAge</span>
+                  <span class="fw-bold">CLASSE</span
+                  ><span id="output-age"></span>
                 </div>
                 <div
                   class="col d-flex justify-content-between align-items-center"
                 >
                   <span class="fw-bold">SCONTO</span
-                  ><span>placeholderDiscount%</span>
+                  ><span><span id="output-discount"></span>%</span>
                 </div>
                 <div
                   class="col d-flex justify-content-between align-items-center"
                 >
                   <span class="fw-bold">TRATTA</span
-                  ><span>placeholderDistance km</span>
+                  ><span><span id="output-distance"></span> km</span>
                 </div>
                 <div
                   class="col d-flex justify-content-between align-items-center"
                 >
                   <span class="fw-bold">PREZZO</span
-                  ><span>€ placeholderPrice</span>
+                  ><span>€ <span id="output-price"></span></span>
+                </div>
+                <div
+                  class="col d-flex justify-content-center align-items-center"
+                >
+                  <img src="./qr.png" alt="qr" class="w-50" />
                 </div>
               </div>
             </div>

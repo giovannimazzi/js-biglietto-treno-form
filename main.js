@@ -5,7 +5,7 @@ const unitPrice = 0.21;
 const defaultAge = "Maggiorenne";
 
 // distanza minima [km]
-const minDistance = 1;
+const minDistance = 5;
 
 // selezione elementi html
 const inputForm = document.getElementById("input-form");
@@ -14,12 +14,29 @@ const inputDistance = document.getElementById("input-distance");
 const inputAge = document.getElementById("input-age");
 const btnConfirm = document.getElementById("btn-confirm");
 const btnAbort = document.getElementById("btn-abort");
+const outputSection = document.getElementById("output-section");
+const outputName = document.getElementById("output-name");
+const outputAge = document.getElementById("output-age");
+const outputDiscount = document.getElementById("output-discount");
+const outputDistance = document.getElementById("output-distance");
+const outputPrice = document.getElementById("output-price");
+
+inputName.addEventListener("change", () => {
+  outputSection.classList.add("d-none");
+});
+inputDistance.addEventListener("change", () => {
+  outputSection.classList.add("d-none");
+});
+inputAge.addEventListener("change", () => {
+  outputSection.classList.add("d-none");
+});
 
 btnAbort.addEventListener("click", () => {
   // Ripristina i valori di default definiti nell'HTML
   inputName.value = inputName.defaultValue;
   inputDistance.value = inputDistance.defaultValue;
   inputAge.value = defaultAge;
+  outputSection.classList.add("d-none");
 });
 
 inputForm.addEventListener("submit", (e) => {
@@ -28,21 +45,26 @@ inputForm.addEventListener("submit", (e) => {
 
   // acquisisco valori dagli input
   const name = capitalize(inputName.value);
-  const distance = Math.max(
-    minDistance, // per default c'è una distanza minima a cui si forzano valori in input eventualmente inferiori ad essa.
-    Math.abs(parseFloat(inputDistance.value)) // inoltre si assume che un eventuale valore negativo sia convertito nel suo opposto.
+  const distance = Math.ceil(
+    // il biglietto sarà arrotondato per eccesso alla tratta intera più vicina.
+    Math.max(
+      minDistance, // per default c'è una distanza minima a cui si forzano valori in input eventualmente inferiori ad essa.
+      Math.abs(parseFloat(inputDistance.value)) // inoltre si assume che un eventuale valore negativo sia convertito nel suo opposto.
+    )
   );
   const age = inputAge.value;
 
   // validazione input nome
   if (!name) {
     console.error(`Nome mancante!`);
+    outputSection.classList.add("d-none");
     return; // se nome non è inserito non si prosegue
   }
 
   // validazione input distanza
   if (isNaN(distance)) {
     console.error(`Distanza mancante!`);
+    outputSection.classList.add("d-none");
     return; // se distanza non è inserita non si prosegue
   }
 
@@ -55,10 +77,18 @@ inputForm.addEventListener("submit", (e) => {
   // pubblico risultato su console
   console.log(`%c---Biglietto---`, "color: yellowgreen");
   console.log(`Nome: ${name}`);
-  console.log(`Distanza: ${distance.toFixed(2)} km`);
+  console.log(`Distanza: ${distance.toFixed(0)} km`);
   console.log(`Età: ${age}`);
   console.log(`Sconto: ${discount}%`);
   console.log(`Prezzo biglietto: € ${price.toFixed(2)}`);
+
+  // pubblico risultato su pagina
+  outputName.innerText = name;
+  outputAge.innerText = age;
+  outputDiscount.innerText = discount;
+  outputDistance.innerText = distance.toFixed(0);
+  outputPrice.innerText = price.toFixed(2);
+  outputSection.classList.remove("d-none");
 });
 
 /**
