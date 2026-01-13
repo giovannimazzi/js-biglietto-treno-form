@@ -35,51 +35,92 @@
 
     <script src="./main.js" defer></script>
   </head>
-  <body>
+  <body
+    style="
+      background-image: url(./stazione-treni.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    "
+  >
     <div class="container text-center">
-      <h1 class="h2">CALCOLA IL PREZZO DEL TUO BIGLIETTO</h1>
-      <form action="#" id="input-form">
-        <div class="row g-3 align-items-center py-3">
-          <div class="col-12 col-sm-4">
-            <div class="card">
-              <label for="input-name">NOME COGNOME</label>
-              <input class="text-center" type="text" id="input-name" required />
-            </div>
-          </div>
+      <section>
+        <div
+          class="container p-2 mt-5 rounded-5"
+          style="background-color: #ffffff"
+        >
+          <h1 class="h2 text-success">CALCOLA IL PREZZO DEL TUO BIGLIETTO</h1>
+          <form action="#" id="input-form">
+            <div class="row g-3 align-items-start py-3">
+              <div class="col-12 col-sm-4">
+                <div class="card">
+                  <label for="input-name" class="bg-dark text-white"
+                    >NOME COGNOME</label
+                  >
+                  <input
+                    class="text-center"
+                    type="text"
+                    id="input-name"
+                    style="background-color: lightyellow"
+                    required
+                  />
+                </div>
+              </div>
 
-          <div class="col-12 col-sm-4">
-            <div class="card">
-              <label for="input-distance">TRATTA [km]</label>
-              <input
-                class="text-center"
-                type="number"
-                id="input-distance"
-                min="5"
-                step="5"
-                value="5"
-                required
-              />
+              <div class="col-12 col-sm-4">
+                <div class="card">
+                  <label for="input-distance" class="bg-dark text-white"
+                    >TRATTA [km]</label
+                  >
+                  <input
+                    class="text-center"
+                    type="number"
+                    id="input-distance"
+                    min="5"
+                    step="5"
+                    value="5"
+                    style="background-color: lightyellow"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="card">
+                  <label for="input-age" class="bg-dark text-white"
+                    >CLASSE</label
+                  >
+                  <select
+                    class="text-center"
+                    name="age"
+                    id="input-age"
+                    style="background-color: lightyellow"
+                  >
+                    <option value="Minorenne">Minorenne</option>
+                    <option value="Maggiorenne" selected>Maggiorenne</option>
+                    <option value="Over 65">Over 65</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <button id="btn-confirm" class="btn btn-success">
+                  CONFERMA
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="col-12 col-sm-4">
-            <div class="card">
-              <label for="input-age">CLASSE</label>
-              <select class="text-center" name="age" id="input-age">
-                <option value="Minorenne">Minorenne</option>
-                <option value="Maggiorenne" selected>Maggiorenne</option>
-                <option value="Over 65">Over 65</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-12"><button id="btn-confirm">CONFERMA</button></div>
+          </form>
+          <button id="btn-abort" class="btn btn-danger">ANNULLA</button>
         </div>
-      </form>
-      <button id="btn-abort">ANNULLA</button>
+      </section>
 
-      <section id="output-section" class="d-none py-5" style="max-width: 512px">
-        <h2>IL TUO BIGLIETTO</h2>
+      <section
+        id="output-section"
+        class="d-none py-5 mx-auto"
+        style="max-width: 512px"
+      >
+        <h2 style="background-color: #ffffff">IL TUO BIGLIETTO</h2>
         <div class="card">
-          <div class="card-header fw-bold text-center">
+          <div class="card-header fw-bold text-center bg-dark text-white">
             <big>PASSEGGERO</big> <br />
             <span id="output-name"></span>
           </div>
