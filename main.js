@@ -8,6 +8,7 @@ const defaultAge = "Maggiorenne";
 const minDistance = 1;
 
 // selezione elementi html
+const inputForm = document.getElementById("input-form");
 const inputName = document.getElementById("input-name");
 const inputDistance = document.getElementById("input-distance");
 const inputAge = document.getElementById("input-age");
@@ -21,7 +22,11 @@ btnAbort.addEventListener("click", () => {
   inputAge.value = defaultAge;
 });
 
-btnConfirm.addEventListener("click", () => {
+inputForm.addEventListener("submit", (e) => {
+  // prevengo invio form
+  e.preventDefault();
+
+  // acquisisco valori dagli input
   const name = capitalize(inputName.value);
   const distance = Math.max(
     minDistance, // per default c'è una distanza minima a cui si forzano valori in input eventualmente inferiori ad essa.
@@ -47,6 +52,7 @@ btnConfirm.addEventListener("click", () => {
   // calcolo prezzo biglietto [€]
   const price = distance * unitPrice * (1 - discount / 100);
 
+  // pubblico risultato su console
   console.log(`%c---Biglietto---`, "color: yellowgreen");
   console.log(`Nome: ${name}`);
   console.log(`Distanza: ${distance.toFixed(2)} km`);
